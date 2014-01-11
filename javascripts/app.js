@@ -37,3 +37,5 @@ Tiles.prototype.swap = function (from, to) {
 Tiles.prototype.isSwapWithNull = function (from, to) {
     return (this.setup[from] !== null && this.setup[to] === null) || (this.setup[to] !== null && this.setup[from] === null);
 };
+
+// Next step: Add randomize function which creates a new random game that is solvable.
