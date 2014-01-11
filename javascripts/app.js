@@ -33,3 +33,7 @@ Tiles.prototype.swap = function (from, to) {
         return new Tiles(copy);
     }
 };
+
+Tiles.prototype.isSwapWithNull = function (from, to) {
+    return (this.setup[from] !== null && this.setup[to] === null) || (this.setup[to] !== null && this.setup[from] === null);
+};
