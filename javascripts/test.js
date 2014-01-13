@@ -1,10 +1,12 @@
-var game = randomizeTiles(10);
+$(document).ready(function () {
+    var game = randomizeTiles(10);
+    createTable(game);
 
-console.log(game);
-// console.log(game = game.swap("r2c3", "r3c3"));
-// console.log(game);
-// console.log(game = game.swap("r2c3", "r2c2"));
-// console.log(game);
-// console.log(game.swap("r2c3", "r3c3"));
+    console.log(game);
 
-// console.log(game.findTile(null));
+    $("div[id*='row']").on('click', 'div', function (e) {
+        // if (game.isValidMove(from, to) &&  game.isSwapWithNull(from, to)) {
+
+        // }
+    });
+});

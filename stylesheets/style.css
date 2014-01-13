@@ -9,11 +9,16 @@ div#table > div {
     display: table-row;
 }
 
-.col1, .col2, .col3, .col4 {
+div[id*='row'] > div {
     display: table-cell;
     font-size: 3em;
     font-family: Verdana, Geneva, Arial, sans-serif;
+    text-align: center;
     padding: 20px;
     border: 2px solid black;
     background-color: #3CF5B4; /* complement #F53C7D */
+}
+
+div#table div.null {
+    background-color: white;
 }

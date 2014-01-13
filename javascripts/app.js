@@ -46,6 +46,10 @@ Tiles.prototype.isValidMove = function (from, to) {
     return _.contains(this.legalMoves[from], to);
 };
 
+Tiles.prototype.isSwapWithNull = function (from, to) {
+    return (this.setup[from] !== null && this.setup[to] === null) || (this.setup[to] !== null && this.setup[from] === null);
+};
+
 Tiles.prototype.swap = function (from, to) {
     var copy;
     if (this.isValidMove(from, to) &&  this.isSwapWithNull(from, to)) {
@@ -60,32 +64,7 @@ Tiles.prototype.swap = function (from, to) {
     }
 };
 
-Tiles.prototype.isSwapWithNull = function (from, to) {
-    return (this.setup[from] !== null && this.setup[to] === null) || (this.setup[to] !== null && this.setup[from] === null);
-};
-
 // Next step: Add randomize function which creates a new random game that is solvable.
-
-var randomizeTiles = function (num) {
-    var possibleMoves,
-        nextMove,
-        i,
-        tileWithNull,
-        game = new Tiles(),
-        answer = [];
-
-    for (i = 0; i < num; i += 1) {
-        tileWithNull = game.findTile(null);
-        possibleMoves = game.legalMoves[tileWithNull];
-        nextMove = randomFromArray(possibleMoves);
-        answer.unshift("Move from " + nextMove + " to " + tileWithNull);
-        game = game.swap(tileWithNull, nextMove);
-    }
-
-    game.answer = answer;
-    return game;
-};
-
 Tiles.prototype.findTile = function (val) {
     for (var prop in this.setup) {
         if (this.setup.hasOwnProperty(prop) && this.setup[prop] === val) {
@@ -96,4 +75,24 @@ Tiles.prototype.findTile = function (val) {
 
 var randomFromArray = function (array) {
     return array[Math.floor(Math.random() * array.length)];
+};
+
+var randomizeTiles = function (num) {
+    var possibleMoves,
+        nextMove,
+        i,
+        tileWithNull,
+        game = new Tiles();
+        // answer = [];
+
+    for (i = 0; i < num; i += 1) {
+        tileWithNull = game.findTile(null);
+        possibleMoves = game.legalMoves[tileWithNull];
+        nextMove = randomFromArray(possibleMoves);
+        // answer.unshift("Move from " + nextMove + " to " + tileWithNull);
+        game = game.swap(tileWithNull, nextMove);
+    }
+
+    // game.answer = answer;
+    return game;
 };
