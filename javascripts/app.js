@@ -1,6 +1,18 @@
 var Tiles = function (setup) {
     // setup is an object
-    this.setup = setup;
+    this.setup = setup || Tiles.prototype.baseSetup;
+};
+
+Tiles.prototype.baseSetup = {
+    "r1c1": 1,
+    "r1c2": 2,
+    "r1c3": 3,
+    "r2c1": 4,
+    "r2c2": 5,
+    "r2c3": 6,
+    "r3c1": 7,
+    "r3c2": 8,
+    "r3c3": null
 };
 
 Tiles.prototype.legalMoves = {
@@ -39,3 +51,32 @@ Tiles.prototype.isSwapWithNull = function (from, to) {
 };
 
 // Next step: Add randomize function which creates a new random game that is solvable.
+
+var randomizeTiles = function (num) {
+    var possibleMoves,
+        nextMove,
+        i,
+        tileWithNull,
+        game = new Tiles();
+
+    for (i = 0; i < num; i += 1) {
+        tileWithNull = game.findTile(null);
+        possibleMoves = game.legalMoves[tileWithNull];
+        nextMove = randomFromArray(possibleMoves);
+        game = game.swap(tileWithNull, nextMove);
+    }
+
+    return game;
+};
+
+Tiles.prototype.findTile = function (val) {
+    for (var prop in this.setup) {
+        if (this.setup.hasOwnProperty(prop) && this.setup[prop] === val) {
+            return prop;
+        }
+    }
+};
+
+var randomFromArray = function (array) {
+    return array[Math.floor(Math.random() * array.length)];
+};
