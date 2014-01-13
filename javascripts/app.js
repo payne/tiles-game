@@ -7,24 +7,38 @@ Tiles.prototype.baseSetup = {
     "r1c1": 1,
     "r1c2": 2,
     "r1c3": 3,
-    "r2c1": 4,
-    "r2c2": 5,
-    "r2c3": 6,
-    "r3c1": 7,
-    "r3c2": 8,
-    "r3c3": null
+    "r1c4": 4,
+    "r2c1": 5,
+    "r2c2": 6,
+    "r2c3": 7,
+    "r2c4": 8,
+    "r3c1": 9,
+    "r3c2": 10,
+    "r3c3": 11,
+    "r3c4": 12,
+    "r4c1": 13,
+    "r4c2": 14,
+    "r4c3": 15,
+    "r4c4": null
 };
 
 Tiles.prototype.legalMoves = {
     "r1c1": ["r1c2", "r2c1"],
     "r1c2": ["r1c1", "r1c3", "r2c2"],
-    "r1c3": ["r1c2", "r2c3"],
+    "r1c3": ["r1c2", "r2c3", "r1c4"],
+    "r1c4": ["r1c3", "r2c4"],
     "r2c1": ["r1c1", "r3c1", "r2c2"],
     "r2c2": ["r1c2", "r2c1", "r2c3", "r3c2"], 
-    "r2c3": ["r1c3", "r2c2", "r3c3"],
-    "r3c1": ["r2c1", "r3c2"],
-    "r3c2": ["r3c1", "r2c2", "r3c3"],
-    "r3c3": ["r2c3", "r3c2"]
+    "r2c3": ["r1c3", "r2c2", "r3c3", "r2c4"],
+    "r2c4": ["r1c4", "r2c3", "r3c4"],
+    "r3c1": ["r2c1", "r3c2", "r4c1"],
+    "r3c2": ["r3c1", "r2c2", "r3c3", "r4c2"],
+    "r3c3": ["r2c3", "r3c2", "r3c4", "r4c3"],
+    "r3c4": ["r3c3", "r2c4", "r4c4"],
+    "r4c1": ["r3c1", "r4c2"],
+    "r4c2": ["r4c1", "r3c2", "r4c3"],
+    "r4c3": ["r4c2", "r3c3", "r4c4"],
+    "r4c4": ["r4c3", "r3c4"]
 };
 
 Tiles.prototype.isValidMove = function (from, to) {
@@ -57,15 +71,18 @@ var randomizeTiles = function (num) {
         nextMove,
         i,
         tileWithNull,
-        game = new Tiles();
+        game = new Tiles(),
+        answer = [];
 
     for (i = 0; i < num; i += 1) {
         tileWithNull = game.findTile(null);
         possibleMoves = game.legalMoves[tileWithNull];
         nextMove = randomFromArray(possibleMoves);
+        answer.unshift("Move from " + nextMove + " to " + tileWithNull);
         game = game.swap(tileWithNull, nextMove);
     }
 
+    game.answer = answer;
     return game;
 };
 
