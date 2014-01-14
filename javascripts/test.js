@@ -19,6 +19,14 @@ $(document).ready(function () {
         $("#table").children().remove();
         game = game.swap(that.attr("id"), nullRowCol);
         createTable(game);
+
+        $null = $(".null");
+        nullRowCol = $null.attr("id");
+        currentLegalMoves = game.legalMoves[nullRowCol];
+
+        for (i = 0; i < currentLegalMoves.length; i += 1) {
+            $("#" + currentLegalMoves[i]).on('click', clickHandlers);
+        }
     };
 
     for (i = 0; i < currentLegalMoves.length; i += 1) {
