@@ -7,7 +7,7 @@ $(document).ready(function () {
         equalSetups,
         clickHandlers;
 
-    game = randomizeTiles(50);
+    game = randomizeTiles(0);
     createTable(game);
 
     $null = $(".null");
