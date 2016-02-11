@@ -4,8 +4,9 @@ var Tiles = function (setup) {
 };
 
 Tiles.prototype.baseSetup = {
-    "r1c1": 1,
+    
     "r1c2": 2,
+    "r1c1": 1,
     "r1c3": 3,
     "r1c4": 4,
     "r2c1": 5,
