@@ -6,5 +6,7 @@ I'm delighted to find this (thanks google & github search).
 
 For now (2/6/16) I have a copy running at http://mattpayne.org/p/
 
+2/10/16 add a gh-pages branch, so it's now at http://payne.github.io/tiles-game/
+
 My hope is to build on fay-jai's work to build a sliding puzzle game that works on my Wife's iPhone.
 
